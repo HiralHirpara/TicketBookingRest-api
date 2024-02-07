@@ -2,10 +2,12 @@ package com.hiral.ticketbookingrest.model;
 
 import java.util.List;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
@@ -18,18 +20,22 @@ public class Booking {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
+	@Column(name="number_of_seats")
 	private int numberOfSeats;
 	
 	private String status;
 	
 	@OneToOne
-	private User userId;
+	@JoinColumn(name="user_id")
+	private User user;
 	
 	@OneToOne
-	private Session sessionId;
+	@JoinColumn(name="session_id")
+	private Session session;
 	
 	@OneToOne
-	private Payment paymentId;
+	@JoinColumn(name="payment_id")
+	private Payment payment;
 	
 	@OneToMany(mappedBy = "booking")
 	private List<SessionSeat> sessionSeats;
@@ -59,28 +65,28 @@ public class Booking {
 		this.status = status;
 	}
 
-	public User getUserId() {
-		return userId;
+	public User getUser() {
+		return user;
 	}
 
-	public void setUserId(User userId) {
-		this.userId = userId;
+	public void setUser(User user) {
+		this.user = user;
 	}
 
-	public Session getSessionId() {
-		return sessionId;
+	public Session getSession() {
+		return session;
 	}
 
-	public void setSessionId(Session sessionId) {
-		this.sessionId = sessionId;
+	public void setSession(Session session) {
+		this.session = session;
 	}
 
-	public Payment getPaymentId() {
-		return paymentId;
+	public Payment getPayment() {
+		return payment;
 	}
 
-	public void setPaymentId(Payment paymentId) {
-		this.paymentId = paymentId;
+	public void setPayment(Payment payment) {
+		this.payment = payment;
 	}
 
 	public List<SessionSeat> getSessionSeats() {

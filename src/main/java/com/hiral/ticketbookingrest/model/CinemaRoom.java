@@ -2,10 +2,12 @@ package com.hiral.ticketbookingrest.model;
 
 import java.util.List;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
@@ -20,15 +22,17 @@ public class CinemaRoom {
 	
 	private String name;
 	
+	@Column(name="total_seats")
 	private int totalSeats;
 	
 	@OneToOne
-	private Cinema cinemaId;
+	@JoinColumn(name="cinema_id")
+	private Cinema cinema;
 	
-	@OneToMany(mappedBy =  "cineamRoom")
+	@OneToMany(mappedBy = "cineamRoom")
 	private List<Session> sessions;
 	
-	@OneToMany(mappedBy ="cinemaRoom")
+	@OneToMany(mappedBy = "cinemaRoom")
 	private List<Seat> seats;
 
 	public Long getId() {
@@ -55,12 +59,12 @@ public class CinemaRoom {
 		this.totalSeats = totalSeats;
 	}
 
-	public Cinema getCinemaId() {
-		return cinemaId;
+	public Cinema getCinema() {
+		return cinema;
 	}
 
-	public void setCinemaId(Cinema cinemaId) {
-		this.cinemaId = cinemaId;
+	public void setCinema(Cinema cinema) {
+		this.cinema = cinema;
 	}
 
 	public List<Session> getSessions() {

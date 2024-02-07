@@ -5,6 +5,7 @@ import java.util.List;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.OneToMany;
@@ -24,7 +25,8 @@ public class Cinema {
 	private List<CinemaRoom> cinemaRooms;
 	
 	@OneToOne
-	private City cityId;
+	@JoinColumn(name="city_id")
+	private City city;
 
 	public Long getId() {
 		return id;
@@ -50,15 +52,12 @@ public class Cinema {
 		this.cinemaRooms = cinemaRooms;
 	}
 
-	public City getCityId() {
-		return cityId;
+	public City getCity() {
+		return city;
 	}
 
-	public void setCityId(City cityId) {
-		this.cityId = cityId;
+	public void setCity(City city) {
+		this.city = city;
 	}
-	
-	
-	
 
 }

@@ -1,7 +1,9 @@
 package com.hiral.ticketbookingrest.model;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -15,9 +17,11 @@ public class Seat {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long Id;
 	
+	@Column(name="seat_number")
 	private int seatNumber;
 	
 	@OneToOne
+	@JoinColumn(name="cinema_room_id")
 	private CinemaRoom cinemaRoom;
 
 	public Long getId() {
@@ -40,7 +44,7 @@ public class Seat {
 		return cinemaRoom;
 	}
 
-	public void setCinemaRoom(CinemaRoom cinemaRoom) {
+	public void setCinemaRoom(CinemaRoom cinemaRoomId) {
 		this.cinemaRoom = cinemaRoom;
 	}
 	

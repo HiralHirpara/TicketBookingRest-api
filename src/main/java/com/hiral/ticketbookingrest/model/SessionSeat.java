@@ -2,13 +2,14 @@ package com.hiral.ticketbookingrest.model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "sessionSeat")
+@Table(name = "session_seat")
 public class SessionSeat {
 	
 	@Id 
@@ -16,17 +17,20 @@ public class SessionSeat {
 	private Long Id;
 	
 	@OneToOne
-	private Session seasionId;
+	@JoinColumn(name= "session_id")
+	private Session session;
 	
 	private String status;
 	
 	private float price;
 	
 	@OneToOne
-	private Seat seatId;
+	@JoinColumn(name= "seat_id")
+	private Seat seat;
 	
 	@OneToOne
-	private Booking bookingId;
+	@JoinColumn(name= "booking_id")
+	private Booking booking;
 	
 
 
@@ -38,12 +42,12 @@ public class SessionSeat {
 		Id = id;
 	}
 
-	public Session getSeasionId() {
-		return seasionId;
+	public Session getSeasion() {
+		return session;
 	}
 
-	public void setSeasionId(Session seasionId) {
-		this.seasionId = seasionId;
+	public void setSeasion(Session seasion) {
+		this.session = session;
 	}
 
 	public String getStatus() {
@@ -62,19 +66,19 @@ public class SessionSeat {
 		this.price = price;
 	}
 
-	public Seat getSeatId() {
-		return seatId;
+	public Seat getSeat() {
+		return seat;
 	}
 
-	public void setSeatId(Seat seatId) {
-		this.seatId = seatId;
+	public void setSeat(Seat seat) {
+		this.seat = seat;
 	}
 
-	public Booking getBookingId() {
-		return bookingId;
+	public Booking getBooking() {
+		return booking;
 	}
 
-	public void setBookingId(Booking bookingId) {
-		this.bookingId = bookingId;
+	public void setBooking(Booking booking) {
+		this.booking = booking;
 	}
 }

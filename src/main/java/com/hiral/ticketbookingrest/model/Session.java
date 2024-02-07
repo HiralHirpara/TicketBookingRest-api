@@ -3,10 +3,12 @@ package com.hiral.ticketbookingrest.model;
 import java.util.Date;
 import java.util.List;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
@@ -21,15 +23,19 @@ public class Session {
 	
 	private Date date;
 	
+	@Column(name="start_time")
 	private Date startTime;
 	
+	@Column(name="end_time")
 	private Date endTime;
 	
 	@OneToOne
-	private CinemaRoom cinemaRoomId;
+	@JoinColumn(name = "cinema_room_id")
+	private CinemaRoom cinemaRoom;
 	
 	@OneToOne
-	private Movie movieId;
+	@JoinColumn(name = "movie_id")
+	private Movie movie;
 	
 	@OneToMany(mappedBy="session")
 	private List<Booking> bookings;
@@ -69,20 +75,21 @@ public class Session {
 		this.endTime = endTime;
 	}
 
-	public CinemaRoom getCinemaRoomId() {
-		return cinemaRoomId;
+
+	public CinemaRoom getCinemaRoom() {
+		return cinemaRoom;
 	}
 
-	public void setCinemaRoomId(CinemaRoom cinemaRoomId) {
-		this.cinemaRoomId = cinemaRoomId;
+	public void setCinemaRoom(CinemaRoom cinemaRoom) {
+		this.cinemaRoom = cinemaRoom;
 	}
 
-	public Movie getMovieId() {
-		return movieId;
+	public Movie getMovie() {
+		return movie;
 	}
 
-	public void setMovieId(Movie movieId) {
-		this.movieId = movieId;
+	public void setMovie(Movie movie) {
+		this.movie = movie;
 	}
 
 	public List<Booking> getBookings() {

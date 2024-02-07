@@ -43,12 +43,12 @@ public class Movie {
 		this.id = id;
 	}
 
-	public String getMovieName() {
-		return movieName;
+	public String getTitle() {
+		return title;
 	}
 
-	public void setMovieName(String movieName) {
-		this.movieName = movieName;
+	public void setTitle(String title) {
+		this.title = title;
 	}
 
 	public String getDescription() {
