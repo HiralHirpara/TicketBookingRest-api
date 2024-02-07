@@ -27,7 +27,7 @@ public class UserController {
 	
 	@GetMapping
 	public List<User> getUsers(){
-		List<User> response = userService.findAll();
+		List<User> response = userService.fetchUserList();
 		return response;
 	}
 	
