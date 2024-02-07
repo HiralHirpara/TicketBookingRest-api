@@ -2,10 +2,11 @@ package com.hiral.ticketbookingrest.model;
 
 import java.util.List;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Table;
 
 @Entity
@@ -13,8 +14,8 @@ import jakarta.persistence.Table;
 public class User {
 	
 	@Id
-    @GeneratedValue
-	private Integer id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 	
 	private  String email;
 	
@@ -24,13 +25,14 @@ public class User {
 	
 	private String phone;
 	
+	@OneToMany(mappedBy = "user")
 	private List<Booking> bookings;
 
-	public Integer getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 

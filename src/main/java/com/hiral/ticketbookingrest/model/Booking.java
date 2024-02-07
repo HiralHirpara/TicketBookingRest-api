@@ -4,6 +4,7 @@ import java.util.List;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
@@ -14,8 +15,8 @@ import jakarta.persistence.Table;
 public class Booking {
 	
 	@Id
-	@GeneratedValue
-	private int id;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 	
 	private int numberOfSeats;
 	
@@ -30,15 +31,15 @@ public class Booking {
 	@OneToOne
 	private Payment paymentId;
 	
-	@OneToMany
+	@OneToMany(mappedBy = "booking")
 	private List<SessionSeat> sessionSeats;
 	
 
-	public int getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
