@@ -6,6 +6,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.hiral.ticketbookingrest.exception.NoSeatsAvailableException;
+import com.hiral.ticketbookingrest.exception.NumberOfSeatsNotAvailableException;
 import com.hiral.ticketbookingrest.model.Booking;
 import com.hiral.ticketbookingrest.model.dto.BookingDTO;
 import com.hiral.ticketbookingrest.service.BookingService;
@@ -18,13 +20,8 @@ public class BookingController {
 	private BookingService bookingService;
 	
 	@PostMapping()
-	public Booking addBooking(@RequestBody BookingDTO bookingDTO) {
-		try {
-			return bookingService.addBooking(bookingDTO);
-		}catch(Exception e) {
-			e.printStackTrace();
-		}
-		return null;
+	public Booking addBooking(@RequestBody BookingDTO bookingDTO) throws NoSeatsAvailableException, NumberOfSeatsNotAvailableException {
+		return bookingService.addBooking(bookingDTO);
 	}
 
 }
